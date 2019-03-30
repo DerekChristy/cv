@@ -1,0 +1,161 @@
+<html>
+    <h2>TENNIS GAME</h2>
+    <canvas id="gameCanvas" width = "800" height = "600"></canvas>
+    <script>
+        var canvas;
+        var convasContext;
+        var ballX = 50;
+        var ballSpeedX = 5;
+        var ballY = 50;
+        var ballSpeedY = 2;
+        var pole1Y = 250;
+        var pole2Y = 250;
+        const POLE_HEIGHT = 100;
+        const POLE_THICKNESS = 10;
+        const HIGH_SCORE = 5;
+        var p1Score = 0;
+        var p2Score = 0;
+        var gameWin = false;
+
+        window.onload = function() {
+        canvas = document.getElementById('gameCanvas');
+        canvasContext = canvas.getContext('2d');
+
+        var FPS = 60;
+        setInterval(update, 1000/FPS); // timer
+
+        canvas.addEventListener('mousemove',
+        function(evt){
+            var mousePos = calMousePos(evt);
+            pole1Y = mousePos.y - (POLE_HEIGHT/2);
+        })
+
+        canvas.addEventListener('mousedown', handelMouseClick);
+        }
+
+        function handelMouseClick(evt) {
+            if(gameWin){
+                p1Score = 0;
+                p2Score = 0;
+                gameWin = false;
+            }
+        }
+
+        function calMousePos(evt){
+            var rect = canvas.getBoundingClientRect();
+            var root = document.documentElement;
+            var mouseX = evt.clientX - rect.left - root.scrollLeft;
+            var mouseY = evt.clientY - rect.top - root.scrollTop;
+            return {
+                x:mouseX,
+                y:mouseY
+            };
+        }
+
+        function update(){
+            move();
+            draw();
+        }
+
+        function ballReset(){
+            if(p1Score >= HIGH_SCORE || p2Score >= HIGH_SCORE){
+                gameWin = true;
+            }
+            // changing the direction and respawning the ball
+            else {
+            ballSpeedX = -ballSpeedX;
+            ballX = canvas.width/2;
+            ballY = canvas.height/2;
+            }
+        }
+
+        function move(){
+            if(ballX > canvas.width){
+                if(ballY > pole2Y && ballY < POLE_HEIGHT + pole2Y){
+                    ballSpeedX = -ballSpeedX;
+                    var deltaY = ballY - (POLE_HEIGHT/2 + pole2Y)
+                    ballSpeedY = deltaY * 0.2;
+                }
+                else{
+                    p1Score++;
+                    ballReset();
+                }
+            }
+            else if(ballX < 0){
+                if(ballY > pole1Y && ballY < POLE_HEIGHT + pole1Y){
+                    ballSpeedX = -ballSpeedX;
+                    var deltaY = ballY - (POLE_HEIGHT/2 + pole1Y)
+                    ballSpeedY = deltaY * 0.2;
+                }
+                else{
+                    p2Score++;
+                    ballReset();
+                }
+            }
+            else if(ballY > canvas.height)
+                ballSpeedY = -ballSpeedY;
+            else if(ballY < 0)
+                ballSpeedY = -ballSpeedY;
+
+            poleAIMovement();// computer pole movement
+            ballX += ballSpeedX;
+            ballY += ballSpeedY;
+
+        }
+
+        function poleAIMovement(){
+            if(ballX > (canvas.width/2 - 100)){
+            var poleCenter = pole2Y + POLE_HEIGHT/2;
+            if(poleCenter < ballY - 35)
+                pole2Y += 6;
+            else if(poleCenter > ballY + 35)
+                pole2Y -= 6;
+            }
+        }
+
+        function draw(){
+            drawRect(0,0,canvas.width,canvas.height, 'black'); // canvas
+
+            if(gameWin){
+                canvasContext.fillStyle = 'white';
+                if(p1Score > p2Score){
+                    canvasContext.fillText("YOU WON!!", 370, 300);
+                }
+                else
+                    canvasContext.fillText("COM WON!!", 370, 300);
+
+                canvasContext.fillText("Tap to continue...", 365, 350);
+                pole2Y = 250;
+                return;
+            }
+
+            canvasContext.fillStyle = 'yellow';
+            canvasContext.fillText("Score: ", 70, 100);
+            canvasContext.fillText(p1Score, 100, 100);
+            canvasContext.fillText("Score: ", (canvas.width - 130), 100);
+            canvasContext.fillText(p2Score, (canvas.width - 100), 100);
+
+            drawRect(0, pole1Y, POLE_THICKNESS, POLE_HEIGHT, 'white');    //player pole
+            drawRect(canvas.width - POLE_THICKNESS, pole2Y, POLE_THICKNESS, POLE_HEIGHT, 'white');   // computer pole
+            for(var y = 0; y < canvas.height; y += 40)
+                drawRect(canvas.width/2, y, 2, 10, 'white');
+            drawBall();   //drawing the ball
+
+        }
+
+        function drawBall(){
+            canvasContext.fillStyle = 'red';
+            canvasContext.beginPath();
+            canvasContext.arc(ballX, ballY, 10, 0, Math.PI*2, true);  // ball
+            canvasContext.fill();
+        }
+
+        function drawRect(posX, posY, width, height, color){
+            canvasContext.fillStyle = color;
+            canvasContext.fillRect(posX, posY, width, height);
+        }
+
+    </script>
+    <h3>e-mail: kered.christy@gmail.com</h3>
+    Recommended to play with a mouse!
+</html>

@@ -1,0 +1,254 @@
+*{
+    box-sizing: border-box;
+}
+
+header{
+    height: 100px;
+    position: sticky;
+    top: 0;
+    background-color: rgba(255, 255, 255, 0.8);
+    z-index: 2;
+}
+
+body{
+    background-color: #eeeeee;
+    margin: 0;
+}
+
+nav{
+    display: block;
+    margin: 10px;
+    padding: 10px;
+    width: fit-content;
+    position: relative;
+    left: 20%;
+}
+
+#heading{
+    width: fit-content;
+    display: inline-block;
+}
+
+#brand{
+    color: #555555;
+    text-decoration: none;
+    font-family: sans-serif;
+    font-size: 40px;
+    width: fit-content;
+    margin: 0;
+    padding: 0;
+}
+
+#sub{
+    color: #555555;
+    text-decoration: none;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 20px;
+    margin: 0;
+    padding: 0;
+    width: fit-content;
+}
+
+#navbar{
+    margin: 10px;
+    text-decoration: none;
+    width: fit-content;
+    display: inline-block;
+}
+
+ul{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+li{
+    float: left;
+}
+
+li a{
+    display: block;
+    color: #555555;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+li a:hover{
+    color: rgb(0, 140, 255);
+}
+
+#image{
+    width: inherit;
+    height: auto;
+    border-radius: 50%;
+}
+
+#imageDiv{
+    margin-left: 20%;
+    float: left;
+    width: 400px;
+}
+
+#about{
+    float: left;
+    width: 400px;
+    margin: 20px;
+    padding-left: 10px;
+}
+
+#hello{
+    color: #555555;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 70px;
+    padding: 0;
+    margin: 0;
+}
+
+#textAbout{
+    color: #555555;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 30px;
+    margin-left: 10px;
+}
+
+#aboutCircle{
+    margin-top: 20px;
+    margin-left: 10px;
+}
+
+#circle1{
+    background-color:	#ffb549;
+    height: 100px;
+    width: 100px;
+    margin-right: 10px;
+    border-radius: 50%;
+    justify-content: center;
+    display: inline-flex;
+    align-items: center;
+}
+
+#circle2{
+    background-color: skyblue;
+    height: 100px;
+    margin-right: 10px;
+    width: 100px;
+    border-radius: 50%;
+    justify-content: center;
+    display: inline-flex;
+    align-items: center;
+}
+
+#circle3{
+    background-color:#ff585d;
+    height: 100px;
+    width: 100px;
+    margin-right: 10px;
+    border-radius: 50%;
+    justify-content: center;
+    display: inline-flex;
+    align-items: center;
+}
+
+#circle3:hover{
+    animation: changeColor1 2s;
+}
+
+#circle2:hover{
+    animation: changeColor2 2s;
+}
+
+#circle1:hover{
+    animation: changeColor3 2s;
+}
+
+#image:hover{
+    filter: blur(4px);
+
+}
+
+a{
+    color: white;
+    padding: 5px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 15px;
+    text-decoration: none;
+    display: inline-block;
+}
+
+#main{
+    margin-top: 100px;
+    height: 400px;
+    width: 100%;
+    display: block;
+}
+
+@keyframes changeColor1 {
+    0% {background-color:  #ff585d;}
+    50% {background-color:black;}
+    50% {background-color:black;}
+    100% {background-color:  #ff585d;}
+  }
+
+  @keyframes changeColor2 {
+    0% {background-color:  skyblue;}
+    50% {background-color:black;}
+    50% {background-color:black;}
+    100% {background-color:  skyblue;}
+  }
+  @keyframes changeColor3 {
+    0% {background-color:  	#ffb549;}
+    50% {background-color:black;}
+    50% {background-color:black;}
+    100% {background-color:  	#ffb549;}
+  }
+
+  footer{
+      bottom: 0;
+      right: 0;
+      clear: both;
+    color: #555555;
+      display: block;
+      float: right;
+      margin: 0;
+      width: 60%;
+      height: 65px;
+      background-image: linear-gradient(to left, palegreen, #eeeeee);
+  }
+
+i{
+    font-size: 50px;
+}
+.inlineblock{
+    margin: 10px;
+    margin-left: 30px;
+    display: inline-block;
+}
+
+#iconText{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 15px;
+    display: block;
+    float: right;
+    margin-left: 15px;
+}
+
+.small{
+    font-size: 22px;
+    margin: 5px;
+}
+
+.floatright{
+    float: right;
+}
+
+.textbox{
+    width: 300px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    color: #555555;
+    font-size: 15px;
+    margin-top: 15px;
+    text-align: left;
+}
